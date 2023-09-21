@@ -326,14 +326,14 @@ if __name__ == "__main__":
         async_processing=True,
     )
 
-    if st.checkbox("Show the detected labels", value=True):
-        if webrtc_ctx.state.playing:
-            labels_placeholder = st.empty()
-            # NOTE: The video transformation with object detection and
-            # this loop displaying the result labels are running
-            # in different threads asynchronously.
-            # Then the rendered video frames and the labels displayed here
-            # are not strictly synchronized.
+    # if st.checkbox("Show the detected labels", value=True):
+    #     if webrtc_ctx.state.playing:
+    #         labels_placeholder = st.empty()
+    #         # NOTE: The video transformation with object detection and
+    #         # this loop displaying the result labels are running
+    #         # in different threads asynchronously.
+    #         # Then the rendered video frames and the labels displayed here
+    #         # are not strictly synchronized.
 
     st.markdown(
         "This demo uses a model and code from "
