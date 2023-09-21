@@ -15,7 +15,7 @@ def download_file(url, download_to: Path, expected_size=None):
         else:
             st.info(f"{url} is already downloaded.")
             # if not st.button("Download again?"):
-            #     return
+            return
 
     download_to.parent.mkdir(parents=True, exist_ok=True)
 
