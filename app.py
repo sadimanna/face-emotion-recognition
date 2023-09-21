@@ -49,7 +49,7 @@ if caffe_cache_key in st.session_state and onnx_cache_key in st.session_state:
 else:
     # Read ONNX model
     model = 'onnx_model.onnx'
-    model = cv2.dnn.readNetFromONNX('emotion-ferplus-8.onnx')
+    model = cv2.dnn.readNetFromONNX(str(ONNX_MODEL_LOCAL_PATH))
     st.session_state[onnx_cache_key] = model
     # Read the Caffe face detector.
     net = cv2.dnn.readNetFromCaffe(str(PROTOTXT_LOCAL_PATH), str(CAFFE_MODEL_LOCAL_PATH))
@@ -259,9 +259,7 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     boxes, scores = net.forward(["boxes", "scores"])
     boxes = np.expand_dims(np.reshape(boxes, (-1, 4)), axis=0)
     scores = np.expand_dims(np.reshape(scores, (-1, 2)), axis=0)
-    boxes = convert_locations_to_boxes(
-        boxes, priors, center_variance, size_variance
-    )
+    boxes = convert_locations_to_boxes(boxes, priors, center_variance, size_variance)
     boxes = center_form_to_corner_form(boxes)
     boxes, labels, probs = predict(
         img_ori.shape[1], 
